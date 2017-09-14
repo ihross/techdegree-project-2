@@ -13,10 +13,19 @@ function showPage(pageNumber, list) {
 }
 
 // Orders and presents the total pages needed for the full student roster
-function appendPageLinks() {
-  let allPages = Math.ceil(numOfStudents / maxStudentsPerPage);
-  console.log(allPages);
+function appendPageLinks(amount) {
+  let numOfPages = Math.ceil(amount / maxStudentsPerPage);   // Sets needed amount of pages
+  $('ul').after('<div class="pagesList"></div>');
+  let ul = '<ul>';
+
+  for (let i = 1; i <= numOfPages; i++) {
+    let temp ='<li><a href="#">' + i + '</a></li>';
+    ul += temp;
+  }
+    ul + ul + '</ul>';
+    $('.pagesList').append(ul);
 }
 
+
 showPage(1, studentList);
-appendPageLinks(studentList);
+appendPageLinks(numOfStudents);
