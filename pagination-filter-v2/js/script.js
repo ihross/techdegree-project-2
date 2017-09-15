@@ -13,17 +13,23 @@ function showPage(pageNumber, list) {
 }
 
 // Orders and presents the total pages needed for the full student roster
-function appendPageLinks(amount) {
-  let numOfPages = Math.ceil(amount / maxStudentsPerPage);   // Sets needed amount of pages
-  $('ul').after('<div class="pagesList"></div>');
+function appendPageLinks(list) {
+  let currentPage = 1;
+  let numOfPages = Math.ceil(list / maxStudentsPerPage);   // Sets needed amount of pages
+  $('ul').after('<div class="pagination"></div>');
   let ul = '<ul>';
 
   for (let i = 1; i <= numOfPages; i++) {
     let temp ='<li><a href="#">' + i + '</a></li>';
     ul += temp;
   }
-    ul + ul + '</ul>';
-    $('.pagesList').append(ul);
+  ul + ul + '</ul>';
+  $('.pagination').append(ul);
+  // Makes clickable links display the right page
+  $('a').click(function() {
+    currentPage = event.target.textContent;
+    showPage(currentPage,studentList);
+  });
 }
 
 
